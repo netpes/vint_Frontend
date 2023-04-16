@@ -1,4 +1,4 @@
-import { Dimensions, Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Image, ImageBackground, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import * as Haptics from "expo-haptics";
 import { Ionicons, Entypo, FontAwesome, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
@@ -62,9 +62,9 @@ const Post = (props) => {
         Haptics.notificationAsync(Haptics.ImpactFeedbackStyle.Success)
     }
     return (
-        <View style={{ flex: 1, height: Dimensions.get('window').height - 100 }} className='flex justify-center overflow-scroll'>
+        <View className='flex justify-center overflow-scroll'>
             <Pressable onPress={handleDoublePress}>
-                <Image source={{ uri: post.productImage }} resizeMode='cover' className='h-[100vh]' />
+                <ImageBackground source={{ uri: post.productImage }} resizeMode='cover' className='h-[100vh]' />
                 {showHeart && <MaterialIcons name="favorite" color="white" style={styles.heart} />}
             </Pressable>
             <View className='absolute w-1/6 h-1/3 bottom-5 right-2  rounded-full flex justify-around items-center'>
@@ -78,7 +78,7 @@ const Post = (props) => {
                     <MaterialIcons name="favorite" style={styles.iconShadow} size={40} color={like} />
                 </TouchableOpacity>
                 <TouchableOpacity className='bg-transparent' onPress={() => {
-                    navigation.navigate('Details', { result: post })
+                    navigation.navigate('Details', { post: post })
                     Haptics.selectionAsync()
                 }}>
                     <Ionicons name="eye" style={styles.iconShadow} size={40} color="white" />
