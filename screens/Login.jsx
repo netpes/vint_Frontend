@@ -24,12 +24,12 @@ export default function Login({ navigation }) {
           <Entypo name="email" size={24} color="white" />
           <TextInput inputMode="email" placeholder="Email" placeholderTextColor='white' className='h-full w-full ml-2 text-base text-white' />
         </View>
-        <View className='flex flex-row items-center justify-start h-14 px-3 w-3/4 bg-white/10 border-b-4 border-b-white rounded-lg mb-10'>
+        <View className='flex flex-row items-center justify-start h-14 px-3 w-3/4 bg-white/10 border-b-4 border-b-white rounded-lg mb-5'>
           <MaterialIcons name="lock" size={24} color="white" />
           <TextInput secureTextEntry placeholder="Password" placeholderTextColor='white' className='h-full w-full ml-2 text-base text-white' />
         </View>
-        <TouchableOpacity className='mt-5'><Text className='text-white/60 '>Forgot Password?</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.logoShadow} className='mt-10 h-14 w-1/2 bg-white/70 rounded-2xl flex justify-center items-center'><Text>Lets Go</Text></TouchableOpacity>
+        <TouchableOpacity><Text className='text-white/60 '>Forgot Password?</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.logoShadow} className='mt-14 h-14 w-1/2 bg-white/70 rounded-2xl flex justify-center items-center'><Text>Lets Go</Text></TouchableOpacity>
         <View className='dlex flex-row justify-center items-center mt-5'>
           <Text className='text-white/60 '>Don't have an account?  </Text>
           <TouchableOpacity onPress={() => navigation.navigate('register')}>

@@ -3,6 +3,8 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import FeedNavigator from "./FeedNavigator";
 
+import conBG from "../assets/concrete.jpg";
+
 import { Ionicons, SimpleLineIcons } from '@expo/vector-icons';
 import ProdNavigator from "./ProdNavigator";
 
