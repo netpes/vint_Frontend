@@ -6,22 +6,27 @@ import Profile from './screens/Profile';
 import Search from './screens/Search';
 import Settings from './screens/Settings';
 import Welcome from './screens/Welcome';
+import HomeNavigator from './navigation/HomeNavigator';
+import { StatusBar } from 'expo-status-bar';
+
+import { Provider } from "react-redux";
+import store from './redux/store';
 
 const Stack = createNativeStackNavigator()
 
-export default function App() {
+export default function App({ navigation }) {
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        headerShown: false,
-        gestureEnabled: false
-      }}>
-        <Stack.Screen name='Search' component={Search} />
-        <Stack.Screen name='Profile' component={Profile} />
-        <Stack.Screen name='Settings' component={Settings} />
-        <Stack.Screen name='Welcome' component={Welcome} />
-        <Stack.Screen name='Auth' component={AuthNavigator} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{
+          headerShown: false,
+          gestureEnabled: false
+        }}>
+          <Stack.Screen name='Welcome' component={Welcome} />
+          <Stack.Screen name='Auth' component={AuthNavigator} />
+          <Stack.Screen name='Home' component={HomeNavigator} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
