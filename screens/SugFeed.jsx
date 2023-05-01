@@ -1,5 +1,5 @@
-import { Dimensions, FlatList, RefreshControl, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import { Dimensions, FlatList, RefreshControl, StatusBar, StyleSheet, Text, View } from "react-native";
+import React, { useCallback, useRef, useState } from "react";
 import Post from "../components/Post";
 
 export default function SugFeed({ navigation }) {
@@ -69,9 +69,10 @@ export default function SugFeed({ navigation }) {
             size: 'XXL'
         },
     ];
+    const [visibleIndex, setVisibleIndex] = useState(0);
     const renderItems = ({ item, index }) => {
         return (
-            <View key={index} style={{ flex: 1, height: Dimensions.get('window').height - 200 }}>
+            <View key={index} style={{ flex: 1, height: Dimensions.get('window').height - 300 }}>
                 <Post
                     post={item}
                     navigation={navigation}
@@ -79,6 +80,11 @@ export default function SugFeed({ navigation }) {
             </View>
         )
     }
+    const onViewableItemsChanged = useRef(({ viewableItems }) => {
+        if (viewableItems.length > 0) {
+            console.log('Currently visible item:', viewableItems[0].item);
+        }
+    }).current;
     const [indexCount, setIndexCount] = useState(0);
     const [refreshing, setRefreshing] = useState(false);
     const onRefresh = async () => {
@@ -105,6 +111,7 @@ export default function SugFeed({ navigation }) {
                         tintColor='#0b9b8a'
                     />
                 }
+                onViewableItemsChanged={onViewableItemsChanged}
                 onMomentumScrollEnd={() => setIndexCount(indexCount + 1)}
                 windowSize={3}
             />

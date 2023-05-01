@@ -10,8 +10,8 @@ import ProdNavigator from "./ProdNavigator";
 
 export default function HomeNavigator() {
     const Tab = createBottomTabNavigator()
-    const iconColor = '#0b9b8a'
-    const activeColor = '#0d6359'
+    const iconColor = '#978178'
+    const activeColor = '#4D4D4D'
     return (
         <Tab.Navigator screenOptions={{
             headerShown: false,
@@ -20,7 +20,7 @@ export default function HomeNavigator() {
             tabBarActiveTintColor: activeColor,
             tabBarStyle: {
                 height: 100,
-                backgroundColor: "#ededee",
+                backgroundColor: "#F5EFE8",
                 borderTopWidth: '1%',
                 borderTopColor: iconColor
             },

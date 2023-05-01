@@ -6,16 +6,12 @@ export default function Details({ route, navigation }) {
     console.log(post);
 
     return (
-        <View className='bg-red-500 flex-1 justify-center items-center'>
+        <View className='flex-1 items-center bg-gray-700'>
             <SafeAreaView />
-            <View className='h-1/2 w-1/4'>
+            <View className='h-[60vh] w-[90vw] rounded-xl mt-6 mb-2'>
                 <ScrollView horizontal pagingEnabled>
                     {post.moreImages.map((image, index) => (
-                        <Image
-                            key={index}
-                            source={{ uri: image }}
-                            style={{ width: 200, height: 200 }}
-                        />
+                        <Image resizeMode="contain" key={index} source={{ uri: image }} className='h-[60vh] w-[90vw] rounded-xl shadow-md shadow-sky-200' />
                     ))}
                 </ScrollView>
             </View>
