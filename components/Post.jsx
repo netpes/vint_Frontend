@@ -1,39 +1,34 @@
 import { Dimensions, Image, ImageBackground, Pressable, StyleSheet, Text, View } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as Haptics from "expo-haptics";
 import { Ionicons, Entypo, FontAwesome, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { useSelector, useDispatch } from "react-redux";
+import { AppContext } from "./AppContext";
 
-import { addToWishList, removeFromWishList } from "../redux/wishlist";
 
 const Post = (props) => {
     const [fav, setFav] = useState('white')
-    const { post, navigation } = props
-    const wishlist = useSelector(state => state.wishlist.items)
-    const dispatch = useDispatch();
-    const addToWishList = (currPost) => {
-        const exists = wishlist.some((item) => {
-            console.log(item);
-            console.log(currPost);
-            
-            return (item === currPost);
-        });
-        console.log(exists);
-        // if (exists) {
-        //     dispatch(removeFromWishList(currPost, index))
-        //     setFav('white')
-        // }
-        // else {
-        //     dispatch(addToWishList(currPost))
-        //     setFav('rgb(14, 165, 233)')
-        //     Haptics.notificationAsync(Haptics.ImpactFeedbackStyle.Success)
-        // }
+
+    const { post, navigation, current } = props
+    const { wishList, setWishList } = useContext(AppContext)
+
+    const addToWishList = async (post) => {
+        const index = wishList.findIndex(item => item._id === post._id);
+        console.log(index);
+        if (index !== -1) {
+            const tempWL = wishList.filter((item) => item._id !== post._id)
+            setWishList(tempWL)
+            setFav('white')
+        }
+        else {
+            setWishList([...wishList, post])
+            setFav('rgb(14, 165, 233)')
+            Haptics.notificationAsync(Haptics.ImpactFeedbackStyle.Success)
+        }
         // const userID = await AsyncStorage.getItem("user")
         // const res = await axios.post(process.env.REACT_APP_BACKEND_URL + '/user/addToWishList', { userID: JSON.parse(userID), newItemWishList: post._id })
         // console.log("this is res for add to wish list ", res.data)
     }
-    
     const styles = StyleSheet.create({
         iconShadow: {
             elevation: 5, shadowColor: 'black', shadowOpacity: 1, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }

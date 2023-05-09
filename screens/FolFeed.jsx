@@ -49,7 +49,7 @@ export default function SugFeed({ navigation }) {
     ];
     const renderItems = ({ item, index }) => {
         return (
-            <View key={index} style={{ flex: 1, height: Dimensions.get('window').height - 200 }}>
+            <View key={index} style={{ flex: 1, height: Dimensions.get('window').height - 280 }}>
                 <Post
                     post={item}
                     navigation={navigation}

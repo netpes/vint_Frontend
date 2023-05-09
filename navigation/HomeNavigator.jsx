@@ -7,6 +7,7 @@ import conBG from "../assets/concrete.jpg";
 
 import { Ionicons, SimpleLineIcons } from '@expo/vector-icons';
 import ProdNavigator from "./ProdNavigator";
+import WishList from "../screens/WishList";
 
 export default function HomeNavigator() {
     const Tab = createBottomTabNavigator()
@@ -46,7 +47,7 @@ export default function HomeNavigator() {
                     </View>
                 ),
             }} />
-            <Tab.Screen name="WishList" component={ProdNavigator} options={{
+            <Tab.Screen name="WishList" component={WishList} options={{
                 tabBarIcon: ({ color, size }) => (
                     <View className="flex justify-center items-center">
                         <Ionicons name="heart-outline" size={30} color={color} />

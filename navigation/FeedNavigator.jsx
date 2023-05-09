@@ -17,8 +17,7 @@ export default function FeedNavigator() {
     return (
         <>
             <StatusBar style='dark' />
-            <SafeAreaView className='bg-[#F5EFE8]' />
-            <View className='h-[50] bg-[#F5EFE8] flex flex-row justify-between px-6 items-center'>
+            <View className='h-[130] bg-[#F5EFE8] flex flex-row justify-between px-6 items-center pt-14'>
                 <EvilIcons name="user" size={40} color='#978178' />
                 <Image source={require('../assets/vintageV.png')} className='h-14 w-14' resizeMode="contain"/>
                 <Ionicons name="chatbubble-outline" size={32} color='#978178' />

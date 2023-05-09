@@ -5,6 +5,7 @@ import Post from "../components/Post";
 export default function SugFeed({ navigation }) {
     const prodArr = [
         {
+            _id: 1,
             seller: "Fashion Point",
             productName: "Black Leather Jacket",
             productImage: "https://cdna.lystit.com/photos/urbanoutfitters/b8415ce9/urban-outfitters-designer-Washed-Black-Ice-Cube-Good-Day-Vintage-Tee.jpeg",
@@ -13,6 +14,7 @@ export default function SugFeed({ navigation }) {
             size: 'XXL'
         },
         {
+            _id: 2,
             seller: "Trendy Threads",
             productName: "Red High Heels",
             productImage: "https://cdn.shopify.com/s/files/1/0588/4900/1651/products/Group196_1445x.png?v=1660588236",
@@ -21,6 +23,7 @@ export default function SugFeed({ navigation }) {
             size: 'XXL'
         },
         {
+            _id: 3,
             seller: "Street Style Co.",
             productName: "Green Camo Pants",
             productImage: "https://img.joomcdn.net/d6df7361b0adc499e055e2fddff466f80be9ea95_original.jpeg",
@@ -29,6 +32,7 @@ export default function SugFeed({ navigation }) {
             size: 'XXL'
         },
         {
+            _id: 4,
             seller: "Fashionista",
             productName: "Yellow Midi Dress",
             productImage: "https://dummyimage.com/300x300/000/fff&text=Yellow+Midi+Dress",
@@ -37,6 +41,7 @@ export default function SugFeed({ navigation }) {
             size: 'XXL'
         },
         {
+            _id: 5,
             seller: "Urban Outfitters",
             productName: "White Cropped Top",
             productImage: "https://dummyimage.com/300x300/000/fff&text=White+Cropped+Top",
@@ -45,6 +50,7 @@ export default function SugFeed({ navigation }) {
             size: 'XXL'
         },
         {
+            _id: 6,
             seller: "High Street Fashion",
             productName: "Blue Skinny Jeans",
             productImage: "https://dummyimage.com/300x300/000/fff&text=Blue+Skinny+Jeans",
@@ -53,6 +59,7 @@ export default function SugFeed({ navigation }) {
             size: 'XXL'
         },
         {
+            _id: 7,
             seller: "Fashion Hub",
             productName: "Pink Sweatshirt",
             productImage: "https://dummyimage.com/300x300/000/fff&text=Pink+Sweatshirt",
@@ -61,6 +68,7 @@ export default function SugFeed({ navigation }) {
             size: 'XXL'
         },
         {
+            _id: 8,
             seller: "Chic Boutique",
             productName: "Beige Knit Sweater",
             productImage: "https://dummyimage.com/300x300/000/fff&text=Beige+Knit+Sweater",
@@ -70,21 +78,18 @@ export default function SugFeed({ navigation }) {
         },
     ];
     const [visibleIndex, setVisibleIndex] = useState(0);
+    const [currentItem, setCurrentItem] = useState({});
     const renderItems = ({ item, index }) => {
         return (
-            <View key={index} style={{ flex: 1, height: Dimensions.get('window').height - 300 }}>
+            <View key={index} style={{ flex: 1, height: Dimensions.get('window').height - 280 }}>
                 <Post
                     post={item}
+                    current={currentItem}
                     navigation={navigation}
                 />
             </View>
         )
     }
-    const onViewableItemsChanged = useRef(({ viewableItems }) => {
-        if (viewableItems.length > 0) {
-            console.log('Currently visible item:', viewableItems[0].item);
-        }
-    }).current;
     const [indexCount, setIndexCount] = useState(0);
     const [refreshing, setRefreshing] = useState(false);
     const onRefresh = async () => {
@@ -95,7 +100,6 @@ export default function SugFeed({ navigation }) {
     const handleAnalytics = () => {
         console.log(`post ${indexCount} is shown`)
     }
-    console.log(indexCount);
     return (
         <View className='flex-1'>
             <FlatList
@@ -111,7 +115,6 @@ export default function SugFeed({ navigation }) {
                         tintColor='#0b9b8a'
                     />
                 }
-                onViewableItemsChanged={onViewableItemsChanged}
                 onMomentumScrollEnd={() => setIndexCount(indexCount + 1)}
                 windowSize={3}
             />
